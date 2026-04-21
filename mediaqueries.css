@@ -30,16 +30,6 @@
         min-width: 100%;
     }
 
-    .info-table tr {
-        display: block;
-    }
-
-    .info-cell {
-        display: block;
-        width: 100%;
-        margin-bottom: 8px;
-    }
-
     .badges-row {
         gap: 6px;
     }
@@ -70,6 +60,24 @@
     .about-layout {
         flex-direction: column;
         align-items: center;
+    }
+
+    .info-table,
+    .info-table tbody,
+    .info-table tr {
+        display: block;
+        width: 100%;
+    }
+
+    .info-cell {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin-bottom: 8px;
+    }
+
+    .info-box {
+        height: auto;
     }
 
     .section-title {
