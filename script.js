@@ -459,14 +459,38 @@ document.addEventListener("DOMContentLoaded", renderGuestbook);
         "Watching surf edits",
     ];
 
+    // Shuffle array and cycle through so every item shows before repeating
+    function shuffle(arr) {
+        const a = [...arr];
+        for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+    }
+
+    let shuffledSongs = shuffle(songs);
+    let shuffledActivities = shuffle(activities);
+    let songIdx = 0;
+    let actIdx = 0;
+
     const musicEl = document.getElementById("aim-music");
     const activityEl = document.getElementById("aim-activity");
 
     if (!musicEl || !activityEl) return;
 
     setInterval(() => {
-        musicEl.textContent = songs[Math.floor(Math.random() * songs.length)];
-        activityEl.textContent =
-            activities[Math.floor(Math.random() * activities.length)];
+        musicEl.textContent = shuffledSongs[songIdx];
+        activityEl.textContent = shuffledActivities[actIdx];
+        songIdx++;
+        actIdx++;
+        if (songIdx >= shuffledSongs.length) {
+            shuffledSongs = shuffle(songs);
+            songIdx = 0;
+        }
+        if (actIdx >= shuffledActivities.length) {
+            shuffledActivities = shuffle(activities);
+            actIdx = 0;
+        }
     }, 8000);
 })();
