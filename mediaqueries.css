@@ -1,104 +1,208 @@
-@media screen and (max-width: 1400px) {
-    #profile {
-      height: 83vh;
-      margin-bottom: 6rem;
+/* ========================================
+   ~*~ RETRO RESPONSIVE QUERIES ~*~
+   ======================================== */
+
+@media screen and (max-width: 900px) {
+    .main-wrapper {
+        padding: 80px 12px 12px;
     }
-    .about-containers {
-      flex-wrap: wrap;
+
+    .glowing-title {
+        font-size: 18px;
     }
-    #contact,
-    #projects {
-      height: fit-content;
+
+    .profile-pic {
+        width: 200px;
+        height: 200px;
     }
-  }
-  
-  @media screen and (max-width: 1200px) {
+
+    .about-pic {
+        width: 180px;
+        height: 180px;
+    }
+
+    .project-card {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .skill-box {
+        min-width: 100%;
+    }
+
+    .info-table tr {
+        display: block;
+    }
+
+    .info-cell {
+        display: block;
+        width: 100%;
+        margin-bottom: 8px;
+    }
+
+    .badges-row {
+        gap: 6px;
+    }
+
+    .badge {
+        font-size: 6px;
+    }
+
+    .midi-player {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 700px) {
     #desktop-nav {
-      display: none;
+        display: none;
     }
+
     #hamburger-nav {
-      display: flex;
+        display: flex;
     }
-    #experience,
-    .experience-details-container {
-      margin-top: 2rem;
+
+    .profile-layout {
+        flex-direction: column;
+        gap: 20px;
     }
-    #profile,
-    .section-container {
-      display: block;
+
+    .about-layout {
+        flex-direction: column;
+        align-items: center;
     }
-    .arrow {
-      display: none;
+
+    .section-title {
+        font-size: 13px;
     }
-    section,
-    .section-container {
-      height: fit-content;
+
+    .glowing-title {
+        font-size: 15px;
     }
-    section {
-      margin: 0 5%;
+
+    .profile-pic {
+        width: 180px;
+        height: 180px;
     }
-    .section__pic-container {
-      width: 275px;
-      height: 275px;
-      margin: 0 auto 2rem;
+
+    .about-pic {
+        width: 160px;
+        height: 160px;
     }
-    .about-containers {
-      margin-top: 0;
+
+    .projects-layout {
+        flex-direction: column;
+        align-items: center;
     }
-  }
-  
-  @media screen and (max-width: 600px) {
-    #contact,
-    footer {
-      height: 40vh;
+
+    .project-card {
+        width: 100%;
+        max-width: 300px;
     }
-    #profile {
-      height: 83vh;
-      margin-bottom: 0;
+
+    .skills-layout {
+        flex-direction: column;
     }
-    article {
-      font-size: 1rem;
+
+    .skill-box {
+        min-width: auto;
+        width: 100%;
     }
-    footer nav {
-      height: fit-content;
-      margin-bottom: 2rem;
+
+    .contact-box {
+        padding: 12px;
     }
-    .about-containers,
-    .contact-info-upper-container,
-    .btn-container {
-      flex-wrap: wrap;
+
+    .webring {
+        max-width: 100%;
     }
-    .contact-info-container {
-      margin: 0;
+
+    .badges-row {
+        flex-direction: column;
+        align-items: center;
     }
-    .contact-info-container p,
-    .nav-links li a {
-      font-size: 1rem;
+
+    .midi-player {
+        flex-direction: column;
+        gap: 6px;
     }
-    .experience-sub-title {
-      font-size: 1.25rem;
+}
+
+@media screen and (max-width: 400px) {
+    .nav-logo {
+        font-size: 9px;
     }
-    .logo {
-      font-size: 1.5rem;
+
+    .marquee-bar {
+        font-size: 13px;
     }
-    .nav-links {
-      flex-direction: column;
-      gap: 0.5rem;
-      text-align: center;
+
+    .section-title {
+        font-size: 11px;
     }
-    .section__pic-container {
-      width: auto;
-      height: 70vw;
-      justify-content: center;
+
+    .glowing-title {
+        font-size: 13px;
     }
-    .section__text__p2 {
-      font-size: 1.25rem;
+
+    .profile-pic {
+        width: 150px;
+        height: 150px;
     }
-    .title {
-      font-size: 2rem;
+
+    .retro-btn {
+        font-size: 15px;
+        padding: 6px 12px;
     }
-    .text-container {
-      text-align: justify;
+
+    .hello-text {
+        font-size: 16px;
     }
-  }
-  
+
+    .subtitle-text {
+        font-size: 18px;
+    }
+
+    .project-card-header {
+        font-size: 8px;
+    }
+}
+
+/* ====== REDUCED MOTION ====== */
+@media (prefers-reduced-motion: reduce) {
+    .marquee-content {
+        animation: none;
+    }
+
+    .blink {
+        animation: none;
+    }
+
+    .rainbow-text {
+        animation: none;
+    }
+
+    .neon-text {
+        animation: none;
+    }
+
+    .glowing-title {
+        animation: none;
+    }
+
+    .hr-fire {
+        animation: none;
+    }
+
+    .hr-rainbow {
+        animation: none;
+    }
+
+    .midi-visualizer.playing .viz-bar {
+        animation: none;
+    }
+
+    .trail-dot {
+        display: none;
+    }
+}

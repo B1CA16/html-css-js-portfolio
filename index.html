@@ -1,223 +1,593 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Portfolio</title>
-        <link rel="icon" type="image/png" href="/assets/favicon.png">
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="mediaqueries.css">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>~*~ Francisco Ferreira's Homepage ~*~</title>
+        <link rel="icon" type="image/png" href="/assets/favicon.png" />
+        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="mediaqueries.css" />
     </head>
     <body>
-        <nav id="desktop-nav">
-            <div class="logo">Francisco Ferreira</div>
-            <div>
-                <ul class="nav-links">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </nav>
-        <nav id="hamburger-nav">
-            <div class="logo">Francisco Ferreira</div>
-            <div class="hamburger-menu">
-                <div class="hamburger-icon" onclick="toggleMenu()">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <div class="menu-links">
-                    <li><a href="#about" onclick="toggleMenu()">About</a></li>
-                    <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
-                    <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-                    <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-                </div>
-            </div>
-        </nav>
-        <section id="profile">
-            <div class="section__pic-container">
-                <img src="./assets/pic.png" alt="Francisco Ferreira Profile Picture">
-            </div>
-            <div class="section__text">
-                <p class="section__text__p1">Hello, I'm</p>
-                <h1 class="title">Francisco Ferreira</h1>
-                <p class="section__text__p2">Frontend Developer</p>
-                <div class="btn-container">
-                    <!-- onclick="window.open('./assets/resume.pdf')" -->
-                    <button class="btn btn-color-2">Download CV</button>
-                    <button class="btn btn-color-1" onclick="location.href='./#contact'">Contact Info</button>
+        <!-- ====== STARFIELD CANVAS ====== -->
+        <canvas id="starfield"></canvas>
 
-                </div>
-                <div id="socials-container">
-                    <img src="./assets/linkedin.png" alt="My LinkedIn profile" class="icon" onclick="location.href='https://www.linkedin.com/in/francisco-dinis-ferreira'">
-                    <img src="./assets/github.png" alt="My GitHub profile" class="icon" onclick="location.href='https://github.com/B1CA16'">
-                </div>
+        <!-- ====== TOP MARQUEE BAR ====== -->
+        <div class="marquee-bar">
+            <div class="marquee-content">
+                <span
+                    >&#9733; Welcome to Francisco's Homepage! &#9733; Best
+                    viewed at 800x600 resolution &#9733; You are visitor #<span
+                        id="visitor-count"
+                        >004572</span
+                    >
+                    &#9733; Last updated: April 2026 &#9733; Sign my guestbook!
+                    &#9733; Welcome to Francisco's Homepage! &#9733; Best viewed
+                    at 800x600 resolution &#9733; You are visitor #<span
+                        class="visitor-count-copy"
+                        >004572</span
+                    >
+                    &#9733; Last updated: April 2026 &#9733; Sign my guestbook!
+                    &#9733;</span
+                >
             </div>
-        </section>
-        <section id="about">
-            <p class="section__text__p1">Get To Know More</p>
-            <h1 class="title">About Me</h1>
-            <div class="section-container">
-                <div class="section__pic-container">
-                    <img src="assets/about-pic.png" alt="Profile Picture" class="about-pic">
-                </div>
-                <div class="about-details-container">
-                    <div class="about-containers">
-                        <div class="details-container">
-                            <img src="./assets/experience.png" alt="Experience Icon" class="icon">
-                            <h3>Experience</h3>
-                            <p>1 year <br />Frontend Development</p>
-                        </div>
-                        <div class="details-container">
-                            <img src="./assets/education.png" alt="Education Icon" class="icon">
-                            <h3>Education</h3>
-                            <p>Computer Engineering Bachelor's Degree<br />Instituto Politécico de Leiria</p>
-                        </div>
+        </div>
+
+        <!-- ====== NAVIGATION ====== -->
+        <nav id="desktop-nav">
+            <table class="nav-table" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td class="nav-logo-cell">
+                        <span class="nav-logo"
+                            >&#127760; Francisco Ferreira</span
+                        >
+                    </td>
+                    <td class="nav-links-cell">
+                        <a href="#about" class="nav-btn">&#128196; About</a>
+                        <a href="#experience" class="nav-btn"
+                            >&#128187; Experience</a
+                        >
+                        <a href="#projects" class="nav-btn"
+                            >&#128736; Projects</a
+                        >
+                        <a href="#contact" class="nav-btn">&#9993; Contact</a>
+                    </td>
+                </tr>
+            </table>
+        </nav>
+
+        <!-- Mobile nav -->
+        <nav id="hamburger-nav">
+            <div class="mobile-nav-inner">
+                <span class="nav-logo">&#127760; Francisco Ferreira</span>
+                <div class="hamburger-menu">
+                    <div class="hamburger-icon" onclick="toggleMenu()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
                     </div>
-                    <div class="text-container">
-                        <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio veritatis, ab voluptatum hic voluptas dolorem! Mollitia voluptate obcaecati dolore rem molestias libero vel ipsa distinctio ut placeat explicabo tempore temporibus natus consequuntur praesentium, amet minus fugit illum molestiae aut quam aspernatur! Iure laborum porro aliquam repudiandae magnam exercitationem, consequatur est!</p> -->
-                    </div>
-                </div>
-            </div>
-            <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#experience'">
-        </section>
-        <section id="experience">
-            <p class="section__text__p1">Explore My</p>
-            <h1 class="title">Experience</h1>
-            <div class="experience-details-container">
-                <div class="about-containers">
-                    <div class="details-container">
-                        <h2 class="experience-sub-title">Frontend</h2>
-                        <div class="article-container">
-                            <article>
-                                <img src="./assets/checkmark.png" alt="Experience icon" class="icon">
-                                <div>
-                                    <h3>HTML</h3>
-                                    <p>Intermediate</p>
-                                </div>
-                            </article>
-                            <article>
-                                <img src="./assets/checkmark.png" alt="Experience icon" class="icon">
-                                <div>
-                                    <h3>CSS</h3>
-                                    <p>Intermediate</p>
-                                </div>
-                            </article>
-                            <article>
-                                <img src="./assets/checkmark.png" alt="Experience icon" class="icon">
-                                <div>
-                                    <h3>JavaScript</h3>
-                                    <p>Basic</p>
-                                </div>
-                            </article>
-                            <article>
-                                <img src="./assets/checkmark.png" alt="Experience icon" class="icon">
-                                <div>
-                                    <h3>React</h3>
-                                    <p>Basic</p>
-                                </div>
-                            </article>
-                        </div>
-                    </div>
-                    <div class="details-container">
-                        <h2 class="experience-sub-title">Backend</h2>
-                        <div class="article-container">
-                            <article>
-                                <img src="./assets/checkmark.png" alt="Experience icon" class="icon">
-                                <div>
-                                    <h3>SQL</h3>
-                                    <p>Intermediate</p>
-                                </div>
-                            </article>
-                            <article>
-                                <img src="./assets/checkmark.png" alt="Experience icon" class="icon">
-                                <div>
-                                    <h3>PHP</h3>
-                                    <p>Basic</p>
-                                </div>
-                            </article>
-                        </div>
+                    <div class="menu-links">
+                        <li>
+                            <a href="#about" onclick="toggleMenu()"
+                                >&#128196; About</a
+                            >
+                        </li>
+                        <li>
+                            <a href="#experience" onclick="toggleMenu()"
+                                >&#128187; Experience</a
+                            >
+                        </li>
+                        <li>
+                            <a href="#projects" onclick="toggleMenu()"
+                                >&#128736; Projects</a
+                            >
+                        </li>
+                        <li>
+                            <a href="#contact" onclick="toggleMenu()"
+                                >&#9993; Contact</a
+                            >
+                        </li>
                     </div>
                 </div>
             </div>
-            <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#projects'">
-        </section>
-        <section id="projects">
-            <p class="section__text__p1">Browse My Recent</p>
-            <h1 class="title">Projects</h1>
-            <div class="experience-details-container">
-                <div class="about-containers">
-                    <div class="details-container color-container">
-                        <div class="article-container">
-                            <img src="./assets/project-1.png" alt="Project 1" class="project-img">
+        </nav>
+
+        <!-- ====== MAIN CONTENT WRAPPER ====== -->
+        <div class="main-wrapper">
+            <!-- ====== SPLASH / HERO SECTION ====== -->
+            <section id="profile">
+                <div class="section-header">
+                    <img
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                        class="divider-line"
+                        alt=""
+                    />
+                    <h2 class="section-title rainbow-text">
+                        ~*~ Welcome to My Homepage ~*~
+                    </h2>
+                    <img
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                        class="divider-line"
+                        alt=""
+                    />
+                </div>
+
+                <div class="profile-layout">
+                    <div class="profile-pic-wrapper">
+                        <div class="retro-frame">
+                            <img
+                                src="./assets/pic.png"
+                                alt="Francisco Ferreira Profile Picture"
+                                class="profile-pic"
+                            />
                         </div>
-                        <h2 class="experience-sub-title project-title">Concept Landing Page</h2>
-                            <div class="btn-container">
-                                <button class="btn btn-color-2 project-btn" onclick="window.open('https://github.com/B1CA16/react-tailwind-company-website','_blank')">GitHub</button>
-                                <button class="btn btn-color-2 project-btn" onclick="window.open('htts://franciscoferreira-virtualr.netlify.app','_blank')">Live Demo</button>
+                        <div class="under-construction-badge">
+                            <span class="blink">&#9888;</span> NEW PHOTO COMING
+                            SOON <span class="blink">&#9888;</span>
+                        </div>
+                    </div>
+                    <div class="profile-text">
+                        <p class="hello-text">&#9658; Hello, I'm</p>
+                        <h1 class="glowing-title">Francisco Ferreira</h1>
+                        <p class="subtitle-text">
+                            <span class="blink">&#9733;</span>
+                            Full-Stack Developer
+                            <span class="blink">&#9733;</span>
+                        </p>
+                        <div class="retro-btn-container">
+                            <button
+                                class="retro-btn"
+                                onclick="window.open('./assets/resume.pdf')"
+                            >
+                                &#128196; Download CV
+                            </button>
+                            <button
+                                class="retro-btn"
+                                onclick="location.href = './#contact'"
+                            >
+                                &#9993; Contact Info
+                            </button>
+                        </div>
+                        <div class="social-links">
+                            <a
+                                href="https://www.linkedin.com/in/francisco-dinis-ferreira"
+                                target="_blank"
+                                class="retro-link"
+                            >
+                                &#128279; LinkedIn
+                            </a>
+                            <span class="link-separator">|</span>
+                            <a
+                                href="https://github.com/B1CA16"
+                                target="_blank"
+                                class="retro-link"
+                            >
+                                &#128187; GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hr-divider">
+                    <span class="hr-fire"></span>
+                </div>
+            </section>
+
+            <!-- ====== ABOUT SECTION ====== -->
+            <section id="about">
+                <div class="section-header">
+                    <img
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                        class="divider-line"
+                        alt=""
+                    />
+                    <h2 class="section-title neon-text">
+                        &#128196; About Me &#128196;
+                    </h2>
+                    <img
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                        class="divider-line"
+                        alt=""
+                    />
+                </div>
+
+                <div class="about-layout">
+                    <div class="about-pic-wrapper">
+                        <div class="retro-frame">
+                            <img
+                                src="assets/about-pic.png"
+                                alt="Profile Picture"
+                                class="about-pic"
+                            />
+                        </div>
+                    </div>
+                    <div class="about-info">
+                        <table
+                            class="info-table"
+                            cellpadding="8"
+                            cellspacing="2"
+                        >
+                            <tr>
+                                <td class="info-cell">
+                                    <div class="info-box">
+                                        <span class="info-icon">&#128188;</span>
+                                        <h3>Experience</h3>
+                                        <p>
+                                            Full-Stack Developer Intern<br /><a
+                                                href="https://cannabud.ai"
+                                                target="_blank"
+                                                class="retro-link"
+                                                >cannabud.ai</a
+                                            ><br />Sep 2025 &mdash; May 2026
+                                        </p>
+                                    </div>
+                                </td>
+                                <td class="info-cell">
+                                    <div class="info-box">
+                                        <span class="info-icon">&#127891;</span>
+                                        <h3>Education</h3>
+                                        <p>
+                                            Computer Engineering<br />Bachelor's
+                                            Degree<br />Instituto
+                                            Polit&eacute;cnico de Leiria
+                                        </p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="hr-divider">
+                    <span class="hr-rainbow"></span>
+                </div>
+            </section>
+
+            <!-- ====== EXPERIENCE SECTION ====== -->
+            <section id="experience">
+                <div class="section-header">
+                    <img
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                        class="divider-line"
+                        alt=""
+                    />
+                    <h2 class="section-title neon-text">
+                        &#128187; My Skills &#128187;
+                    </h2>
+                    <img
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                        class="divider-line"
+                        alt=""
+                    />
+                </div>
+
+                <div class="skills-layout">
+                    <div class="skill-box">
+                        <h3 class="skill-title">&#9758; Frontend</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">TypeScript</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Vue</span>
+                            <span class="skill-tag">Next.js</span>
+                        </div>
+                    </div>
+                    <div class="skill-box">
+                        <h3 class="skill-title">&#9758; Backend</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Laravel</span>
+                            <span class="skill-tag">Flask</span>
+                            <span class="skill-tag">PHP</span>
+                        </div>
+                    </div>
+                    <div class="skill-box">
+                        <h3 class="skill-title">&#9758; Databases</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">SQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hr-divider">
+                    <span class="hr-fire"></span>
+                </div>
+            </section>
+
+            <!-- ====== PROJECTS SECTION ====== -->
+            <section id="projects">
+                <div class="section-header">
+                    <img
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                        class="divider-line"
+                        alt=""
+                    />
+                    <h2 class="section-title neon-text">
+                        &#128736; My Projects &#128736;
+                    </h2>
+                    <img
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                        class="divider-line"
+                        alt=""
+                    />
+                </div>
+
+                <div class="projects-layout">
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="blink new-badge">NEW!</span>
+                            Concept Landing Page
+                        </div>
+                        <div class="project-card-body">
+                            <img
+                                src="./assets/project-1.png"
+                                alt="Project 1"
+                                class="project-img"
+                            />
+                            <p class="project-desc">
+                                A responsive company landing page with modern UI
+                                components, smooth animations, and clean layout.
+                            </p>
+                            <p class="project-tech">
+                                Built with: React + Tailwind
+                            </p>
+                            <div class="project-links">
+                                <a
+                                    href="https://github.com/B1CA16/react-tailwind-company-website"
+                                    target="_blank"
+                                    class="retro-btn small-btn"
+                                    >&#128187; GitHub</a
+                                >
+                                <a
+                                    href="https://franciscoferreira-virtualr.netlify.app"
+                                    target="_blank"
+                                    class="retro-btn small-btn"
+                                    >&#127760; Live Demo</a
+                                >
                             </div>
-                    </div>
-                    <div class="details-container color-container">
-                        <div class="article-container">                              
-                            <img src="./assets/project-2.png" alt="Project 2" class="project-img">
                         </div>
-                        <h2 class="experience-sub-title project-title">To-Do List</h2>
-                            <div class="btn-container">
-                                <button class="btn btn-color-2 project-btn" onclick="window.open('https://github.com/B1CA16/html-css-js-to-do-list','_blank')">GitHub</button>
-                                <button class="btn btn-color-2 project-btn" onclick="window.open('https://franciscoferreira-to-do-list.netlify.app/','_blank')">Live Demo</button>
-                            </div>
                     </div>
-                    <div class="details-container color-container">
-                        <div class="article-container">
-                            <img src="./assets/project-3.png" alt="Project 3" class="project-img">
-                        </div>
-                        <h2 class="experience-sub-title project-title">Weather App</h2>
-                            <div class="btn-container">
-                                <button class="btn btn-color-2 project-btn" onclick="window.open('https://github.com/B1CA16/html-css-js-weather-app','_blank')">GitHub</button>
-                                <button class="btn btn-color-2 project-btn" onclick="window.open('https://franciscoferreira-weather-app.netlify.app','_blank')">Live Demo</button>
+
+                    <div class="project-card">
+                        <div class="project-card-header">To-Do List</div>
+                        <div class="project-card-body">
+                            <img
+                                src="./assets/project-2.png"
+                                alt="Project 2"
+                                class="project-img"
+                            />
+                            <p class="project-desc">
+                                A task management app with add, complete, and
+                                delete functionality. Data persists in local
+                                storage.
+                            </p>
+                            <p class="project-tech">
+                                Built with: HTML + CSS + JS
+                            </p>
+                            <div class="project-links">
+                                <a
+                                    href="https://github.com/B1CA16/html-css-js-to-do-list"
+                                    target="_blank"
+                                    class="retro-btn small-btn"
+                                    >&#128187; GitHub</a
+                                >
+                                <a
+                                    href="https://franciscoferreira-to-do-list.netlify.app/"
+                                    target="_blank"
+                                    class="retro-btn small-btn"
+                                    >&#127760; Live Demo</a
+                                >
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-card-header">Weather App</div>
+                        <div class="project-card-body">
+                            <img
+                                src="./assets/project-3.png"
+                                alt="Project 3"
+                                class="project-img"
+                            />
+                            <p class="project-desc">
+                                Real-time weather lookup by city with
+                                temperature, humidity, and condition display via
+                                API integration.
+                            </p>
+                            <p class="project-tech">
+                                Built with: HTML + CSS + JS
+                            </p>
+                            <div class="project-links">
+                                <a
+                                    href="https://github.com/B1CA16/html-css-js-weather-app"
+                                    target="_blank"
+                                    class="retro-btn small-btn"
+                                    >&#128187; GitHub</a
+                                >
+                                <a
+                                    href="https://franciscoferreira-weather-app.netlify.app"
+                                    target="_blank"
+                                    class="retro-btn small-btn"
+                                    >&#127760; Live Demo</a
+                                >
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+                <div class="hr-divider">
+                    <span class="hr-rainbow"></span>
+                </div>
+            </section>
+
+            <!-- ====== CONTACT SECTION ====== -->
+            <section id="contact">
+                <div class="section-header">
+                    <img
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                        class="divider-line"
+                        alt=""
+                    />
+                    <h2 class="section-title neon-text">
+                        &#9993; Contact Me &#9993;
+                    </h2>
+                    <img
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                        class="divider-line"
+                        alt=""
+                    />
+                </div>
+
+                <div class="contact-box">
+                    <div class="guestbook-header">
+                        <span class="blink">&#9733;</span> Drop me a line!
+                        <span class="blink">&#9733;</span>
+                    </div>
+                    <table
+                        class="contact-table"
+                        cellpadding="8"
+                        cellspacing="4"
+                    >
+                        <tr>
+                            <td class="contact-cell">
+                                <span class="contact-icon-text">&#9993;</span>
+                                <a
+                                    href="mailto:francisco.dinis.ferreira@gmail.com"
+                                    class="retro-link"
+                                    >francisco.dinis.ferreira@gmail.com</a
+                                >
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="contact-cell">
+                                <span class="contact-icon-text">&#128279;</span>
+                                <a
+                                    href="https://www.linkedin.com/in/francisco-dinis-ferreira/"
+                                    target="_blank"
+                                    class="retro-link"
+                                    >LinkedIn Profile</a
+                                >
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- ====== GUESTBOOK ====== -->
+                <div class="guestbook-section">
+                    <h3 class="guestbook-title">
+                        &#128221; Sign My Guestbook! &#128221;
+                    </h3>
+                    <div class="guestbook-form">
+                        <input
+                            type="text"
+                            id="guestbook-name"
+                            placeholder="Your Name"
+                            class="retro-input"
+                        />
+                        <textarea
+                            id="guestbook-msg"
+                            placeholder="Leave a message..."
+                            class="retro-input retro-textarea"
+                        ></textarea>
+                        <button class="retro-btn" onclick="signGuestbook()">
+                            &#9997; Sign!
+                        </button>
+                    </div>
+                    <div id="guestbook-entries" class="guestbook-entries">
+                        <div class="guestbook-entry">
+                            <strong>Webmaster:</strong> Welcome to my guestbook!
+                            Be the first to sign!
+                            <span class="entry-date">04/21/2026</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- end main-wrapper -->
+
+        <!-- ====== FOOTER ====== -->
+        <footer>
+            <div class="hr-divider">
+                <span class="hr-fire"></span>
             </div>
-            <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#contact'">
-        </section>
-        <section id="contact">
-            <p class="section__text__p1">Get in Touch</p>
-            <h1 class="title">Contact Me</h1>
-            <div class="contact-info-upper-container">
-              <div class="contact-info-container">
-                <img
-                  src="./assets/email.png"
-                  alt="Email icon"
-                  class="icon contact-icon email-icon"
-                />
-                <p><a href="mailto:france.dinis@gmail.com">france.dinis@gmail.com</a></p>
-              </div>
-              <div class="contact-info-container">
-                <img
-                  src="./assets/linkedin.png"
-                  alt="LinkedIn icon"
-                  class="icon contact-icon"
-                />
-                <p><a href="https://www.linkedin.com/in/francisco-dinis-ferreira/">LinkedIn</a></p>
-              </div>
+
+            <!-- Webring -->
+            <div class="webring">
+                <span class="webring-label"
+                    >&#127760; Francisco's Web Ring &#127760;</span
+                >
+                <div class="webring-nav">
+                    <a href="#" class="retro-link">&lt;&lt; Prev</a>
+                    <span class="link-separator">|</span>
+                    <a href="#" class="retro-link">Random</a>
+                    <span class="link-separator">|</span>
+                    <a href="#" class="retro-link">Next &gt;&gt;</a>
+                </div>
             </div>
-          </section>
-          <footer>
-            <nav>
-              <div class="nav-links-container">
-                <ul class="nav-links">
-                  <li><a href="#about">About</a></li>
-                  <li><a href="#experience">Experience</a></li>
-                  <li><a href="#projects">Projects</a></li>
-                  <li><a href="#contact">Contact</a></li>
-                </ul>
-              </div>
-            </nav>
-            <p>Copyright &#169; 2023 Francisco Ferreira. All Rights Reserved.</p>
-          </footer>
-        <script src="script.js"></script>
+
+            <!-- Navigation -->
+            <div class="footer-nav">
+                <a href="#about" class="retro-link">About</a>
+                <span class="link-separator">|</span>
+                <a href="#experience" class="retro-link">Experience</a>
+                <span class="link-separator">|</span>
+                <a href="#projects" class="retro-link">Projects</a>
+                <span class="link-separator">|</span>
+                <a href="#contact" class="retro-link">Contact</a>
+            </div>
+
+            <!-- Badges -->
+            <div class="badges-row">
+                <div class="badge">
+                    &#128187; Best viewed in<br />Netscape Navigator 4.0
+                </div>
+                <div class="badge">&#128736; Made with<br />Notepad</div>
+                <div class="badge">&#127760; HTML 3.2<br />Validated</div>
+                <div class="badge counter-badge">
+                    Visitors:
+                    <span id="counter-display" class="counter-digits"
+                        >00004572</span
+                    >
+                </div>
+            </div>
+
+            <!-- MIDI Player -->
+            <div class="midi-player">
+                <span class="midi-label">&#127925; Now Playing:</span>
+                <span id="midi-song" class="midi-song">dancing_baby.mid</span>
+                <button
+                    class="retro-btn tiny-btn"
+                    id="midi-toggle"
+                    onclick="toggleMidi()"
+                >
+                    &#9654; Play
+                </button>
+                <div class="midi-visualizer" id="midi-viz">
+                    <span class="viz-bar"></span>
+                    <span class="viz-bar"></span>
+                    <span class="viz-bar"></span>
+                    <span class="viz-bar"></span>
+                    <span class="viz-bar"></span>
+                    <span class="viz-bar"></span>
+                    <span class="viz-bar"></span>
+                    <span class="viz-bar"></span>
+                </div>
+            </div>
+
+            <p class="copyright">
+                Copyright &copy; <span id="copyright-year">2026</span> Francisco
+                Ferreira. All Rights Reserved.<br />
+                <span class="copyright-sub"
+                    >This site is under eternal construction &#9888;</span
+                >
+            </p>
+        </footer>
+
+        <!-- ====== CUSTOM CURSOR TRAIL ====== -->
+        <div id="cursor-trail"></div>
+
+        <script type="module" src="script.js"></script>
     </body>
 </html>
