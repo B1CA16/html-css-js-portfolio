@@ -62,22 +62,12 @@
         align-items: center;
     }
 
-    .info-table,
-    .info-table tbody,
-    .info-table tr {
-        display: block;
-        width: 100%;
+    .info-table {
+        flex-direction: column;
     }
 
     .info-cell {
-        display: block;
         width: 100%;
-        height: auto;
-        margin-bottom: 8px;
-    }
-
-    .info-box {
-        height: auto;
     }
 
     .section-title {

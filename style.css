@@ -565,15 +565,19 @@ section {
 }
 
 .info-table {
+    display: flex;
+    gap: 8px;
     width: 100%;
-    border-collapse: separate;
-    border-spacing: 8px;
+}
+
+.info-table tbody,
+.info-table tr {
+    display: contents;
 }
 
 .info-cell {
-    vertical-align: stretch;
-    height: 1px;
-    width: 50%;
+    flex: 1;
+    display: flex;
 }
 
 .info-box {
@@ -582,7 +586,7 @@ section {
     box-shadow: 0 0 10px rgba(0, 255, 255, 0.2), inset 0 0 5px rgba(0, 255, 255, 0.05);
     padding: 15px;
     text-align: center;
-    height: 100%;
+    flex: 1;
 }
 
 .info-box h3 {
