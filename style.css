@@ -882,33 +882,65 @@ footer {
     margin: 15px 0;
 }
 
-.badge {
-    background: var(--win-face);
-    border-top: 2px solid var(--win-highlight);
-    border-left: 2px solid var(--win-highlight);
-    border-bottom: 2px solid var(--win-shadow);
-    border-right: 2px solid var(--win-shadow);
-    padding: 6px 10px;
+/* 88x31 pixel badges */
+.pixel-badge {
+    width: 88px;
+    height: 31px;
     font-family: 'Press Start 2P', cursive;
-    font-size: 7px;
-    color: #000;
+    font-size: 6px;
+    line-height: 1.4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    line-height: 1.6;
+    border: 1px solid #555;
+    image-rendering: pixelated;
+    flex-shrink: 0;
 }
 
-.counter-badge {
-    background: #000;
-    border: 2px inset var(--win-face);
+.badge-netscape {
+    background: linear-gradient(to bottom, #000080, #000050);
+    color: #fff;
+}
+
+.badge-notepad {
+    background: linear-gradient(to bottom, #2a2a2a, #111);
     color: var(--neon-green);
+}
+
+.badge-html {
+    background: linear-gradient(to bottom, #003300, #001a00);
+    color: #00ff00;
+}
+
+.badge-y2k {
+    background: linear-gradient(to bottom, #330033, #1a001a);
+    color: var(--neon-pink);
+    font-size: 7px;
+}
+
+.badge-counter {
+    background: #000;
+    border: 1px solid #333;
+    width: auto;
+    min-width: 88px;
+    padding: 0 6px;
+}
+
+.visitor-counter-line {
+    text-align: center;
     font-family: 'VT323', monospace;
-    font-size: 16px;
-    padding: 6px 12px;
-    letter-spacing: 2px;
+    font-size: 18px;
+    color: var(--retro-silver);
+    margin: 10px 0;
 }
 
 .counter-digits {
     color: #ff0000;
-    font-size: 20px;
+    font-family: 'VT323', monospace;
+    font-size: 22px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
     text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
 }
 
@@ -1017,6 +1049,222 @@ footer {
 ::selection {
     background: var(--neon-pink);
     color: #000;
+}
+
+/* ====== SPLASH INTRO PAGE ====== */
+#splash-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 20000;
+    background: var(--bg-darker);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+#splash-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+#splash-starfield {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.splash-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 40px;
+}
+
+.splash-logo {
+    font-size: 64px;
+    margin-bottom: 10px;
+    animation: splash-float 3s ease-in-out infinite;
+}
+
+@keyframes splash-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.splash-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 28px;
+    color: var(--neon-green);
+    text-shadow: var(--glow-green);
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.splash-sub {
+    font-family: 'VT323', monospace;
+    font-size: 24px;
+    color: var(--neon-cyan);
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    margin-bottom: 15px;
+}
+
+.splash-divider {
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(to right,
+        transparent, var(--neon-pink), transparent
+    );
+    margin: 15px auto;
+}
+
+.splash-est {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14px;
+    color: var(--neon-pink);
+    text-shadow: var(--glow-pink);
+    margin-bottom: 25px;
+    letter-spacing: 4px;
+}
+
+.splash-loading {
+    margin-bottom: 20px;
+}
+
+.splash-loading-text {
+    font-family: 'VT323', monospace;
+    font-size: 16px;
+    color: var(--retro-silver);
+    margin-bottom: 8px;
+}
+
+.splash-progress-bar {
+    width: 250px;
+    height: 16px;
+    background: #000;
+    border: 2px inset var(--win-face);
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.splash-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(to right, #000080, #0044cc, var(--neon-cyan));
+    transition: width 0.1s linear;
+}
+
+.splash-enter-btn {
+    display: none;
+    background: linear-gradient(to bottom, #000080, #000050);
+    border: 2px outset #4444aa;
+    color: var(--neon-yellow);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    padding: 14px 30px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    animation: splash-btn-glow 2s ease-in-out infinite alternate;
+    margin-bottom: 15px;
+}
+
+.splash-enter-btn:hover {
+    background: linear-gradient(to bottom, #0000aa, #000080);
+    color: #fff;
+}
+
+.splash-enter-btn:active {
+    border-style: inset;
+}
+
+.splash-enter-btn.visible {
+    display: inline-block;
+}
+
+@keyframes splash-btn-glow {
+    0% { box-shadow: 0 0 5px rgba(0, 0, 128, 0.5); }
+    100% { box-shadow: 0 0 20px rgba(0, 100, 255, 0.6), 0 0 40px rgba(0, 100, 255, 0.3); }
+}
+
+.splash-skip {
+    font-family: 'VT323', monospace;
+    font-size: 14px;
+    color: var(--retro-gray);
+    cursor: pointer;
+    display: none;
+}
+
+.splash-skip.visible {
+    display: block;
+}
+
+.splash-skip:hover {
+    color: var(--retro-silver);
+}
+
+/* ====== AIM/MSN STATUS BOX ====== */
+.aim-status-box {
+    margin-top: 15px;
+    border: 2px solid #444;
+    max-width: 240px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 14px;
+}
+
+.aim-header {
+    background: linear-gradient(to right, #336699, #003366);
+    color: #fff;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 8px;
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.aim-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+.aim-dot.online {
+    background: #00ff00;
+    box-shadow: 0 0 4px #00ff00;
+}
+
+.aim-body {
+    background: #1a1a2e;
+    padding: 8px 10px;
+}
+
+.aim-row {
+    padding: 3px 0;
+    font-family: 'VT323', monospace;
+    font-size: 16px;
+    color: var(--retro-silver);
+}
+
+.aim-label {
+    color: var(--retro-gray);
+}
+
+.aim-value {
+    color: var(--neon-cyan);
+}
+
+.online-text {
+    color: var(--neon-green);
 }
 
 /* ====== SCANLINES OVERLAY (subtle CRT effect) ====== */

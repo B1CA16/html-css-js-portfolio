@@ -19,7 +19,7 @@ import {
     orderBy,
     limit,
     getDocs,
-    serverTimestamp
+    serverTimestamp,
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -28,11 +28,85 @@ const firebaseConfig = {
     projectId: "francisco-portfolio-6c2bb",
     storageBucket: "francisco-portfolio-6c2bb.firebasestorage.app",
     messagingSenderId: "656039667199",
-    appId: "1:656039667199:web:38bfbc923fbab9659ef3ca"
+    appId: "1:656039667199:web:38bfbc923fbab9659ef3ca",
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+
+// ====== SPLASH INTRO PAGE ======
+(function initSplash() {
+    const overlay = document.getElementById("splash-overlay");
+    if (!overlay) return;
+
+    // Splash starfield (smaller, separate canvas)
+    const canvas = document.getElementById("splash-starfield");
+    if (canvas) {
+        const ctx = canvas.getContext("2d");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const stars = [];
+        for (let i = 0; i < 150; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 2 + 0.3,
+                speed: Math.random() * 0.8 + 0.2,
+            });
+        }
+
+        function drawSplashStars() {
+            if (overlay.classList.contains("hidden")) return;
+            ctx.fillStyle = "rgba(5, 5, 24, 0.4)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            stars.forEach((s) => {
+                ctx.fillStyle = `rgba(255, 255, 255, ${0.5 + Math.random() * 0.5})`;
+                ctx.fillRect(s.x, s.y, s.size, s.size);
+                s.y += s.speed;
+                if (s.y > canvas.height) {
+                    s.y = 0;
+                    s.x = Math.random() * canvas.width;
+                }
+            });
+            requestAnimationFrame(drawSplashStars);
+        }
+        drawSplashStars();
+    }
+
+    // Fake loading bar
+    const progress = document.getElementById("splash-progress");
+    const enterBtn = document.getElementById("splash-enter");
+    const skipText = document.querySelector(".splash-skip");
+    let pct = 0;
+
+    // Show skip immediately
+    if (skipText) skipText.classList.add("visible");
+
+    const loadInterval = setInterval(() => {
+        pct += Math.random() * 8 + 2;
+        if (pct >= 100) {
+            pct = 100;
+            clearInterval(loadInterval);
+            // Show enter button
+            if (enterBtn) enterBtn.classList.add("visible");
+            const loadingDiv = document.querySelector(".splash-loading");
+            if (loadingDiv) loadingDiv.style.display = "none";
+        }
+        if (progress) progress.style.width = pct + "%";
+    }, 150);
+})();
+
+window.enterSite = function () {
+    const overlay = document.getElementById("splash-overlay");
+    if (overlay) {
+        overlay.classList.add("hidden");
+        document.body.style.overflow = "";
+    }
+};
+
+// Prevent scrolling while splash is visible
+document.body.style.overflow = "hidden";
 
 // ====== HAMBURGER MENU TOGGLE ======
 // Must be global for onclick handlers
@@ -67,7 +141,7 @@ window.toggleMenu = function () {
                 size: Math.random() * 2 + 0.5,
                 speed: Math.random() * SPEED + 0.1,
                 brightness: Math.random(),
-                twinkleSpeed: Math.random() * 0.02 + 0.005
+                twinkleSpeed: Math.random() * 0.02 + 0.005,
             });
         }
     }
@@ -87,7 +161,7 @@ window.toggleMenu = function () {
                 `rgba(255, 255, 255, ${alpha})`,
                 `rgba(100, 200, 255, ${alpha})`,
                 `rgba(255, 200, 100, ${alpha})`,
-                `rgba(200, 100, 255, ${alpha})`
+                `rgba(200, 100, 255, ${alpha})`,
             ];
             ctx.fillStyle = colors[Math.floor(star.size * 2) % colors.length];
 
@@ -167,7 +241,7 @@ function updateCounterDisplay(padded) {
         "#ffff00",
         "#00ff41",
         "#ff0000",
-        "#0088ff"
+        "#0088ff",
     ];
     const trailDots = [];
     const MAX_DOTS = 15;
@@ -203,11 +277,24 @@ function updateCounterDisplay(padded) {
 // ====== MIDI PLAYER (FAKE) ======
 let midiPlaying = false;
 const midiSongs = [
-    "dancing_baby.mid",
-    "macarena_remix.mid",
-    "under_the_sea.mid",
-    "star_wars_cantina.mid",
-    "final_countdown.mid"
+    "BMTH - Pray for Plagues",
+    "BMTH - The Sadness Will Never End",
+    "The Devil Wears Prada - Danger: Wildman",
+    "The Devil Wears Prada - HTML Rulez D00d",
+    "blessthefall - I'm Bad News, In The Best Way",
+    "blessthefall - Hey Baby, Here's That Song You Wanted",
+    "Parkway Drive - Carrion",
+    "Parkway Drive - Smoke'Em If Ya Got'Em",
+    "Greeley Estates - Let The Evil Go East",
+    "Drop Dead, Gorgeous - Dressed For Friend Requests",
+    "Alesana - The Thespian",
+    "Underoath - Writing on the Walls",
+    "Hopes Die Last - Call Me Sick Boy",
+    "Saosin - Seven Years",
+    "Adept - Shark! Shark! Shark!",
+    "Yesterdays Rising - Time Holds The Truth",
+    "EmmaNJ - Megacodine",
+    "GunsLikeGirls - Hand Control",
 ];
 
 window.toggleMidi = function () {
@@ -220,13 +307,20 @@ window.toggleMidi = function () {
     if (midiPlaying) {
         btn.innerHTML = "&#9724; Stop";
         viz.classList.add("playing");
-        songEl.textContent =
-            midiSongs[Math.floor(Math.random() * midiSongs.length)];
     } else {
         btn.innerHTML = "&#9654; Play";
         viz.classList.remove("playing");
     }
 };
+
+// Auto-rotate song name every 8 seconds
+setInterval(() => {
+    const songEl = document.getElementById("midi-song");
+    if (songEl) {
+        songEl.textContent =
+            midiSongs[Math.floor(Math.random() * midiSongs.length)];
+    }
+}, 8000);
 
 // ====== GUESTBOOK (FIRESTORE) ======
 function escapeHtml(str) {
@@ -251,7 +345,7 @@ window.signGuestbook = async function () {
         await addDoc(collection(db, "guestbook"), {
             name: name.substring(0, 50),
             msg: msg.substring(0, 200),
-            createdAt: serverTimestamp()
+            createdAt: serverTimestamp(),
         });
 
         nameEl.value = "";
@@ -272,7 +366,7 @@ async function renderGuestbook() {
         const q = query(
             collection(db, "guestbook"),
             orderBy("createdAt", "desc"),
-            limit(20)
+            limit(20),
         );
         const snapshot = await getDocs(q);
 
@@ -330,4 +424,49 @@ document.addEventListener("DOMContentLoaded", renderGuestbook);
     cursor.className = "blink";
     cursor.style.color = "inherit";
     title.appendChild(cursor);
+})();
+
+// ====== AIM STATUS ROTATION ======
+(function initAimStatus() {
+    const songs = [
+        "BMTH - Pray for Plagues",
+        "BMTH - The Sadness Will Never End",
+        "The Devil Wears Prada - Danger: Wildman",
+        "The Devil Wears Prada - HTML Rulez D00d",
+        "blessthefall - I'm Bad News, In The Best Way",
+        "blessthefall - Hey Baby, Here's That Song You Wanted",
+        "Parkway Drive - Carrion",
+        "Parkway Drive - Smoke'Em If Ya Got'Em",
+        "Greeley Estates - Let The Evil Go East",
+        "Drop Dead, Gorgeous - Dressed For Friend Requests",
+        "Alesana - The Thespian",
+        "Underoath - Writing on the Walls",
+        "Hopes Die Last - Call Me Sick Boy",
+        "Saosin - Seven Years",
+        "Adept - Shark! Shark! Shark!",
+        "Yesterdays Rising - Time Holds The Truth",
+        "EmmaNJ - Megacodine",
+        "GunsLikeGirls - Hand Control",
+    ];
+    const activities = [
+        "Playing guitar",
+        "Watching surf clips",
+        "Gaming",
+        "Shredding riffs",
+        "Watching WSL highlights",
+        "Learning a new song",
+        "Grinding ranked",
+        "Watching surf edits",
+    ];
+
+    const musicEl = document.getElementById("aim-music");
+    const activityEl = document.getElementById("aim-activity");
+
+    if (!musicEl || !activityEl) return;
+
+    setInterval(() => {
+        musicEl.textContent = songs[Math.floor(Math.random() * songs.length)];
+        activityEl.textContent =
+            activities[Math.floor(Math.random() * activities.length)];
+    }, 8000);
 })();

@@ -9,6 +9,35 @@
         <link rel="stylesheet" href="mediaqueries.css" />
     </head>
     <body>
+        <!-- ====== SPLASH INTRO PAGE ====== -->
+        <div id="splash-overlay">
+            <canvas id="splash-starfield"></canvas>
+            <div class="splash-content">
+                <div class="splash-logo">&#127760;</div>
+                <h1 class="splash-title">Francisco Ferreira</h1>
+                <p class="splash-sub">Full-Stack Developer</p>
+                <div class="splash-divider"></div>
+                <p class="splash-est">Est. 2004</p>
+                <div class="splash-loading">
+                    <div class="splash-loading-text">Loading...</div>
+                    <div class="splash-progress-bar">
+                        <div
+                            class="splash-progress-fill"
+                            id="splash-progress"
+                        ></div>
+                    </div>
+                </div>
+                <button
+                    class="splash-enter-btn"
+                    id="splash-enter"
+                    onclick="enterSite()"
+                >
+                    &#9658; Enter My Site &#9668;
+                </button>
+                <p class="splash-skip" onclick="enterSite()">[ Skip Intro ]</p>
+            </div>
+        </div>
+
         <!-- ====== STARFIELD CANVAS ====== -->
         <canvas id="starfield"></canvas>
 
@@ -164,6 +193,34 @@
                             >
                                 &#128187; GitHub
                             </a>
+                        </div>
+
+                        <!-- AIM/MSN Status Box -->
+                        <div class="aim-status-box">
+                            <div class="aim-header">
+                                <span class="aim-dot online"></span>
+                                francisco_dev04
+                            </div>
+                            <div class="aim-body">
+                                <div class="aim-row">
+                                    <span class="aim-label">Status:</span>
+                                    <span class="aim-value online-text"
+                                        >Online</span
+                                    >
+                                </div>
+                                <div class="aim-row">
+                                    <span class="aim-label">&#9835;</span>
+                                    <span class="aim-value" id="aim-music"
+                                        >BMTH - Shadow Moses</span
+                                    >
+                                </div>
+                                <div class="aim-row">
+                                    <span class="aim-label">Currently:</span>
+                                    <span class="aim-value" id="aim-activity"
+                                        >Playing guitar</span
+                                    >
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -362,7 +419,8 @@
                                 class="project-img"
                             />
                             <p class="project-desc">
-                                An image classification app powered by a Python ML model with a web-based interface.
+                                An image classification app powered by a Python
+                                ML model with a web-based interface.
                             </p>
                             <p class="project-tech">
                                 Built with: HTML + CSS + JS + Python
@@ -541,20 +599,6 @@
                 <span class="hr-fire"></span>
             </div>
 
-            <!-- Webring -->
-            <div class="webring">
-                <span class="webring-label"
-                    >&#127760; Francisco's Web Ring &#127760;</span
-                >
-                <div class="webring-nav">
-                    <a href="#" class="retro-link">&lt;&lt; Prev</a>
-                    <span class="link-separator">|</span>
-                    <a href="#" class="retro-link">Random</a>
-                    <span class="link-separator">|</span>
-                    <a href="#" class="retro-link">Next &gt;&gt;</a>
-                </div>
-            </div>
-
             <!-- Navigation -->
             <div class="footer-nav">
                 <a href="#about" class="retro-link">About</a>
@@ -566,25 +610,31 @@
                 <a href="#contact" class="retro-link">Contact</a>
             </div>
 
-            <!-- Badges -->
+            <!-- 88x31 Pixel Badges -->
             <div class="badges-row">
-                <div class="badge">
-                    &#128187; Best viewed in<br />Netscape Navigator 4.0
+                <div class="pixel-badge badge-netscape">
+                    Best viewed in<br />Netscape 4.0
                 </div>
-                <div class="badge">&#128736; Made with<br />Notepad</div>
-                <div class="badge">&#127760; HTML 3.2<br />Validated</div>
-                <div class="badge counter-badge">
-                    Visitors:
-                    <span id="counter-display" class="counter-digits"
-                        >00004572</span
-                    >
+                <div class="pixel-badge badge-notepad">
+                    Made with<br />Notepad
                 </div>
+                <div class="pixel-badge badge-html">HTML 3.2<br />Valid</div>
+                <div class="pixel-badge badge-y2k">Est.<br />2004</div>
+            </div>
+            <div class="visitor-counter-line">
+                You are visitor #<span
+                    id="counter-display"
+                    class="counter-digits"
+                    >00004572</span
+                >
             </div>
 
             <!-- MIDI Player -->
             <div class="midi-player">
                 <span class="midi-label">&#127925; Now Playing:</span>
-                <span id="midi-song" class="midi-song">dancing_baby.mid</span>
+                <span id="midi-song" class="midi-song"
+                    >BMTH - Pray for Plagues</span
+                >
                 <button
                     class="retro-btn tiny-btn"
                     id="midi-toggle"
