@@ -277,8 +277,8 @@ function updateCounterDisplay(padded) {
 // ====== MIDI PLAYER (FAKE) ======
 let midiPlaying = false;
 const midiSongs = [
-    "BMTH - Pray for Plagues",
-    "BMTH - The Sadness Will Never End",
+    "Bring Me The Horizon - Pray for Plagues",
+    "Bring Me The Horizon - The Sadness Will Never End",
     "The Devil Wears Prada - Danger: Wildman",
     "The Devil Wears Prada - HTML Rulez D00d",
     "blessthefall - I'm Bad News, In The Best Way",
@@ -429,8 +429,8 @@ document.addEventListener("DOMContentLoaded", renderGuestbook);
 // ====== AIM STATUS ROTATION ======
 (function initAimStatus() {
     const songs = [
-        "BMTH - Pray for Plagues",
-        "BMTH - The Sadness Will Never End",
+        "Bring Me The Horizon - Pray for Plagues",
+        "Bring Me The Horizon - The Sadness Will Never End",
         "The Devil Wears Prada - Danger: Wildman",
         "The Devil Wears Prada - HTML Rulez D00d",
         "blessthefall - I'm Bad News, In The Best Way",
